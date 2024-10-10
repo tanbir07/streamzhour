@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+            <div class="nav">
+                <div class="navigation">
+                    <div class="events" onclick="changeIframeSource('event.html')">
+                        <img src="icon/live.png" class="logo-icon">
+                        <p>EVENTS</p>
+                    </div>
+                    <div class="events">
+                        <img src="icon/live-show.png" class="logo-icon" onclick="changeIframeSource('livetv.html')">
+                        <p>LIVE TV</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <iframe id="match-iframe" class="live-events" src="event.html" scrolling="no" allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+
+    <script>
+        // Function to change the iframe source
+        function changeIframeSource(url) {
+            document.getElementById('match-iframe').src = url;
+        }
+
+        // Current time display
+        function updateCurrentTime() {
+            const now = new Date();
+            const currentTime = now.toLocaleTimeString();
+            document.getElementById('current-time').textContent = `Current Time: ${currentTime}`;
+        }
+        setInterval(updateCurrentTime, 1000);
+    </script>
+
+</body>
+</html>

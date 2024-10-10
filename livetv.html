@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TV</title>
+    <style>
+
+        body {
+        background: #222831;
+        margin: 0px;
+        font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p{
+            margin: 0px;
+        }
+
+        .mover {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            margin-bottom: 2px; /* Space between sliders */
+        }
+
+        .mover p{
+            color: #d7f6ff;
+            font-weight: bold;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .mover:active {
+            cursor: grabbing;
+        }
+
+        .move {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card {
+            width: 140px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            user-select: none; /* Prevent text selection */
+            text-decoration: none; /* Remove default link styling */
+            margin-left: 10px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        .header p{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            color: rgb(65, 106, 132);
+        }
+
+        .header{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vr-line{
+            height: 1px;
+            width: 40%;
+            background-color: gray;
+            margin-bottom: 30px;
+        }
+
+        .img{
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 10px;
+            cursor: pointer;
+         }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <p>Live TV</p>
+        <div class="vr-line"></div>
+    </div>
+    
+
+    <div class="mover" id="slider1">
+        <p>Bangladesh →</p>
+        <div class="move">
+            <a href="https://example.com/1" class="card">
+                <img src="https://backoffice.channel24bd.tv/media/common/logo.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/3/31/Deepto_TV_logo.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/02/Ananda_TV_Logo.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhPV50PQ-faa1HdygPbWLAk82YZdPMo_lHHg&s" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe7fpjLAW55jtPIwR62TGtFZuj8TQX76folg&s" alt="" class="img">
+            </a>
+            
+        </div>
+    </div>
+
+    <div class="mover" id="slider2">
+        <p>India →</p>
+        <div class="move">
+            <a href="https://example.com/1" class="card">
+                <img src="https://www.medianews4u.com/wp-content/uploads/2018/10/Zee-Bangla-New-Logo-2-3.jpg" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://www.medianews4u.com/wp-content/uploads/2018/10/Zee-Bangla-New-Logo-2-3.jpg" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://www.medianews4u.com/wp-content/uploads/2018/10/Zee-Bangla-New-Logo-2-3.jpg" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://www.medianews4u.com/wp-content/uploads/2018/10/Zee-Bangla-New-Logo-2-3.jpg" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://www.medianews4u.com/wp-content/uploads/2018/10/Zee-Bangla-New-Logo-2-3.jpg" alt="" class="img">
+            </a>
+        </div>
+    </div>
+
+    <div class="mover" id="slider3">
+        <p>international →</p>
+        <div class="move">
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/2560px-2018_Animal_Planet_logo.svg.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/2560px-2018_Animal_Planet_logo.svg.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/2560px-2018_Animal_Planet_logo.svg.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/2560px-2018_Animal_Planet_logo.svg.png" alt="" class="img">
+            </a>
+
+            <a href="https://example.com/1" class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/2018_Animal_Planet_logo.svg/2560px-2018_Animal_Planet_logo.svg.png" alt="" class="img">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const movers = document.querySelectorAll('.mover');
+
+        movers.forEach(mover => {
+            const move = mover.querySelector('.move');
+            const totalMoves = mover.querySelectorAll('.card').length;
+            const moveWidth = 100 / totalMoves;
+            let isDown = false;
+            let startX;
+            let currentTranslateX = 0;
+
+            // Mouse Down
+            mover.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX - mover.offsetLeft;
+            });
+
+            // Mouse Leave
+            mover.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            // Mouse Up
+            mover.addEventListener('mouseup', () => {
+                isDown = false;
+                currentTranslateX = parseFloat(move.style.transform.replace('translateX(', '').replace('%)', ''));
+            });
+
+            // Mouse Move
+            mover.addEventListener('mousemove', (e) => {
+                if (!isDown) return; 
+                e.preventDefault();
+                const x = e.pageX - mover.offsetLeft;
+                const moveX = (x - startX) * 0.3;
+                let newTranslateX = currentTranslateX + moveX / mover.offsetWidth * 100;
+
+                // Constrain movement to within bounds
+                newTranslateX = Math.min(0, newTranslateX);
+                newTranslateX = Math.max(-(totalMoves - 1) * moveWidth, newTranslateX);
+
+                move.style.transform = `translateX(${newTranslateX}%)`;
+            });
+
+            // Touch Events for mobile devices
+            mover.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX - mover.offsetLeft;
+            });
+
+            mover.addEventListener('touchend', () => {
+                isDown = false;
+                currentTranslateX = parseFloat(move.style.transform.replace('translateX(', '').replace('%)', ''));
+            });
+
+            mover.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX - mover.offsetLeft;
+                const moveX = (x - startX) * 0.3;
+                let newTranslateX = currentTranslateX + moveX / mover.offsetWidth * 100;
+
+                // Constrain movement within bounds
+                newTranslateX = Math.min(0, newTranslateX);
+                newTranslateX = Math.max(-(totalMoves - 1) * moveWidth, newTranslateX);
+
+                move.style.transform = `translateX(${newTranslateX}%)`;
+            });
+        });
+    </script>
+</body>
+</html>

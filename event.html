@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        p{
+            margin: 0px;
+        }
+
+        .slider-container {
+            margin: 20px;
+        }
+
+        .mover {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            
+        }
+
+        .mover:active {
+            cursor: grabbing;
+        }
+
+        .move {
+            display: flex;
+            width: 400%;
+            height: 100%;
+            transition: transform 0.9s ease;
+        }
+
+        .card {
+            width: 14%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            color: rgb(223, 241, 254);
+            user-select: none;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 19px;
+            border-radius: 10px;
+            
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            background-color: rgb(33, 49, 68);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 1000;
+            border-radius: 10px;
+        }
+
+        .popup .popup-header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .popup .popup-links a {
+            display: block;
+            margin-bottom: 10px;
+            color: rgb(223, 241, 254);
+            text-decoration: none;
+        }
+
+        .popup .popup-links a:hover {
+            color: #007bff;
+        }
+
+        /* Overlay to dim the background when popup is active */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.70);
+            z-index: 999;
+            
+            backdrop-filter: blur(2px);
+        }
+
+        /* Close button */
+        .popup-close {
+            cursor: pointer;
+            font-size: 16px;
+            color: red;
+            text-align: right;
+        }
+
+        .t-img{
+            width: 50px;
+            height: 50px;
+            border-radius: 40px;
+            display: inline-block;
+            margin-bottom: 3px;
+            
+        }
+
+        .card{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            
+        }
+
+        .card-details{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+
+            
+        }
+
+        .team{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+        }
+
+        .team1{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+        }
+
+        .team1 p{
+            display: inline-block;
+        }
+
+        .time{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+        }
+
+        /* Live Icon CSS */
+
+        body {
+  background: #222831;
+}
+
+.circle {
+  position: absolute;
+  
+  transform: translateX(3px) translateY(-2px);
+  width: 15px;
+  height: 15px;
+
+  &:before {
+    content: "";
+    position: relative;
+    display: block;
+    width: 250%;
+    height: 250%;
+    box-sizing: border-box;
+    margin-left: -75%;
+    margin-top: -75%;
+    border-radius: 45px;
+    background-color: red;
+    animation: pulse 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    border-radius: 50px;
+    animation: circle 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.33);
+  }
+  80%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes circle {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+.live p{
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.hr{
+    height: 50px;
+}
+
+.sec-name{
+    color: rgb(223, 241, 254);
+    font-weight: bold;
+    margin-top: 15PX;
+    margin-left: 10px;
+}
+
+.line{
+            width: 50px;
+        }
+        .team1{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-detail{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            border: 1px solid rgb(81, 81, 81);
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            background-color: #323d54;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            
+        }
+        .time{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            border-top: 1px solid #323d54;
+            border-right: 1px solid #323d54;
+            border-left: 1px solid #323d54;
+            background-color: #323d54;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.34) 0px 3px 8px;
+        }
+
+        .live{
+            color: red;
+            font-weight: bold;
+        }
+
+        .vr-text{
+            background-color: #d10a0a;
+            color: rgb(5, 252, 161);
+            width: 170px;
+            text-align: center;
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <p class="sec-name" style="margin-top: 40px;">🏏Cricket :</p>
+
+    <div class="slider-container">
+        <div class="mover" id="slider1">
+            <div class="move">
+                <div class="card" data-id="1" data-slider="1">
+
+
+                    <div class="time">
+                        <p>Today</p>
+                        <div class="circle"></div>
+                        <p class="live">LIVE</p>
+                    </div>
+                    <div class="card-detail">
+                        <div class="team1">
+                            <p>England</p>
+                            <img src="https://png.pngtree.com/png-clipart/20221229/original/pngtree-england-flag-circle-button-united-kingdom-symbol-png-image_8824542.png" class="t-img">
+                        </div>
+                        <img src="icon/line.png" class="line">
+                        <div class="team1">
+                            <img src="https://media.istockphoto.com/id/1347332330/vector/pakistan-3d-rounded-country-flag-button-icon.jpg?s=170667a&w=0&k=20&c=1S5ntwgS62OQoC5oQRU_g7Ifmlm30_7tLr--EiQOYls=" class="t-img">
+                            <p>Pakistan</p>
+                        </div>
+                        
+                    </div> 
+                     <div class="vr-text">
+                        <p>Day 4 | Test</p>
+                    </div>
+
+                </div>
+                <div class="card" data-id="2" data-slider="1">
+
+
+                    <div class="time">
+                        <p>Today</p>
+                        <div class="circle"></div>
+                        <p class="live">LIVE</p>
+                    </div>
+                    <div class="card-detail">
+                        <div class="team1">
+                            <p>Bangladesh</p>
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdJLKt7BWRIjFtCTU9BebFOvk0G0tSXb09pA&s" class="t-img">
+                        </div>
+                        <img src="icon/line.png" class="line">
+                        <div class="team1">
+                            <img src="https://t3.ftcdn.net/jpg/06/12/34/84/360_F_612348476_k3i3brMUOo3N9Wk3yoceMHqZ8w4jpFqu.jpg" class="t-img">
+                            <p>India</p>
+                        </div>
+                    </div>
+                    <div class="vr-text">
+                        <p>Day 4 | Test</p>
+                    </div>
+
+                </div>
+                <div class="card" data-id="3" data-slider="1">
+                    
+
+                    <div class="time">
+                        <p>Today</p>
+                        <div class="circle"></div>
+                        <p class="live">LIVE</p>
+                    </div>
+                    <div class="card-detail">
+                        <div class="team1">
+                            <p>World Cup</p>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/2024_ICC_Women%27s_T20_World_Cup_qualifier_logo.jpg" class="t-img">
+                        </div>
+                        <img src="icon/line.png" class="line">
+                        <div class="team1">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/2024_ICC_Women%27s_T20_World_Cup_qualifier_logo.jpg" class="t-img">
+                            <p>World Cup</p>
+                        </div>
+                    </div>
+                    <div class="vr-text">
+                        <p>Day 4 | Test</p>
+                    </div>
+
+                </div>
+                <div class="card" data-id="4" data-slider="1">Loading...</div>
+                <div class="card" data-id="5" data-slider="1">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <p class="sec-name">⚽Football :</p>
+
+    <div class="slider-container">
+        <div class="mover" id="slider2">
+            <div class="move">
+                <div class="card" data-id="1" data-slider="2">
+
+
+
+                    <div class="time">
+                        <p>Today</p>
+                        <div class="circle"></div>
+                        <p class="live">LIVE</p>
+                    </div>
+                    <div class="card-detail">
+                        <div class="team1">
+                            <p>P League</p>
+                            <img src="https://ssl.gstatic.com/onebox/media/sports/logos/5D811WOqeV3SRG6qt-DDPA_64x64.png" class="t-img">
+                        </div>
+                        <img src="icon/line.png" class="line">
+                        <div class="team1">
+                            <img src="https://ssl.gstatic.com/onebox/media/sports/logos/5D811WOqeV3SRG6qt-DDPA_64x64.png" class="t-img">
+                            <p>P League</p>
+                        </div>
+                    </div>
+                    <div class="vr-text">
+                        <p>Day 4 | Test</p>
+                    </div>
+
+
+                </div>
+                <div class="card" data-id="2" data-slider="2">
+
+
+                    <div class="time">
+                        <p>Today</p>
+                        <div class="circle"></div>
+                        <p class="live">LIVE</p>
+                    </div>
+                    <div class="card-detail">
+                        <div class="team1">
+                            <p>LaLiga</p>
+                            <img src="https://tvs6.github.io/sports_2.0/img/la-liga-2016-2023-logo.png" class="t-img">
+                        </div>
+                        <img src="icon/line.png" class="line">
+                        <div class="team1">
+                            <img src="https://tvs6.github.io/sports_2.0/img/la-liga-2016-2023-logo.png" class="t-img">
+                            <p>LaLiga</p>
+                        </div>
+                    </div>
+                    <div class="vr-text">
+                        <p>Day 4 | Test</p>
+                    </div>
+                    
+                </div>
+                <div class="card" data-id="3" data-slider="2">Loading...</div>
+                <div class="card" data-id="4" data-slider="2">Loading...</div>
+                <div class="card" data-id="5" data-slider="2">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup HTML -->
+    <div class="overlay"></div>
+    <div class="popup">
+        <div class="popup-close">X</div>
+        <div class="popup-header">Choose a link</div>
+        <div class="popup-links" id="popup-links">
+            <!-- Links will be dynamically injected here -->
+        </div>
+    </div>
+
+    <script>
+        const popups = {
+            slider1: [
+                [
+                    { text: 'Google', url: 'https://www.google.com' },
+                    { text: 'Yahoo', url: 'https://www.yahoo.com' }
+                ],
+                [
+                    { text: 'Facebook', url: 'https://www.facebook.com' },
+                    { text: 'Twitter', url: 'https://www.twitter.com' }
+                ],
+                [
+                    { text: 'YouTube', url: 'https://www.youtube.com' },
+                    { text: 'Vimeo', url: 'https://www.vimeo.com' }
+                ],
+                [
+                    { text: 'Amazon', url: 'https://www.amazon.com' },
+                    { text: 'eBay', url: 'https://www.ebay.com' }
+                ],
+                [
+                    { text: 'LinkedIn', url: 'https://www.linkedin.com' },
+                    { text: 'GitHub', url: 'https://www.github.com' }
+                ]
+            ],
+            slider2: [
+                [
+                    { text: 'Apple', url: 'https://www.apple.com' },
+                    { text: 'Microsoft', url: 'https://www.microsoft.com' }
+                ],
+                [
+                    { text: 'Netflix', url: 'https://www.netflix.com' },
+                    { text: 'Hulu', url: 'https://www.hulu.com' }
+                ],
+                [
+                    { text: 'Spotify', url: 'https://www.spotify.com' },
+                    { text: 'SoundCloud', url: 'https://www.soundcloud.com' }
+                ],
+                [
+                    { text: 'Tesla', url: 'https://www.tesla.com' },
+                    { text: 'Ford', url: 'https://www.ford.com' }
+                ],
+                [
+                    { text: 'Instagram', url: 'https://www.instagram.com' },
+                    { text: 'Snapchat', url: 'https://www.snapchat.com' }
+                ]
+            ]
+        };
+
+        const sliders = document.querySelectorAll('.mover');
+        const popup = document.querySelector('.popup');
+        const overlay = document.querySelector('.overlay');
+        const popupClose = document.querySelector('.popup-close');
+        const popupLinksContainer = document.getElementById('popup-links');
+
+        // Show popup function with specific links
+        function showPopup(slider, cardIndex) {
+            overlay.style.display = 'block';
+            popup.style.display = 'block';
+
+            // Clear previous links
+            popupLinksContainer.innerHTML = '';
+
+            // Inject new hyperlinks into the popup
+            popups[slider][cardIndex].forEach(link => {
+                const linkElement = document.createElement('a');
+                linkElement.href = link.url;
+                linkElement.textContent = link.text;
+                linkElement.target = '_blank';
+                popupLinksContainer.appendChild(linkElement);
+            });
+        }
+
+        // Hide popup function
+        function hidePopup() {
+            overlay.style.display = 'none';
+            popup.style.display = 'none';
+        }
+
+        // Attach click event to each card to show the corresponding popup
+        sliders.forEach((slider) => {
+            const cards = slider.querySelectorAll('.card');
+            const sliderId = slider.id;
+
+            cards.forEach((card, index) => {
+                card.addEventListener('click', () => {
+                    showPopup(sliderId, index);
+                });
+            });
+        });
+
+        // Close popup when close button or overlay is clicked
+        popupClose.addEventListener('click', hidePopup);
+        overlay.addEventListener('click', hidePopup);
+
+        // Function to enable dragging on each slider
+        function enableSliderMovement(slider) {
+            const move = slider.querySelector('.move');
+            const totalmoves = move.children.length;
+            const moveWidth = 100 / totalmoves;
+            let isDown = false;
+            let startX;
+            let currentTranslateX = 0;
+            let requestedAnimation = null;
+            let movement = 0;
+
+            // Function to update the transform with smoothness
+            function updateMovement() {
+                const newTranslateX = currentTranslateX + movement;
+                const constrainedX = Math.min(0, Math.max(-(totalmoves - 1) * moveWidth, newTranslateX));
+                move.style.transform = `translateX(${constrainedX}%)`;
+                currentTranslateX = constrainedX;
+                requestedAnimation = null;
+            }
+
+            // Mouse Events for dragging
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                startX = e.pageX;
+                slider.classList.add('active');
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const x = e.pageX;
+                movement = (x - startX) * 0.05;
+                if (!requestedAnimation) {
+                    requestedAnimation = requestAnimationFrame(updateMovement);
+                }
+            });
+
+            // Touch Events for mobile devices
+            slider.addEventListener('touchstart', (e) => {
+                isDown = true;
+                startX = e.touches[0].pageX;
+            });
+
+            slider.addEventListener('touchend', () => {
+                isDown = false;
+            });
+
+            slider.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX;
+                movement = (x - startX) * 0.05;
+                if (!requestedAnimation) {
+                    requestedAnimation = requestAnimationFrame(updateMovement);
+                }
+            });
+        }
+
+        // Initialize dragging for both sliders
+        sliders.forEach((slider) => enableSliderMovement(slider));
+
+    </script>
+</body>
+</html>
